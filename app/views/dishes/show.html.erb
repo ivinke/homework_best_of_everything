@@ -18,6 +18,7 @@
           <%= User.find_by({ :id => favorite.user_id }).username %>
           / Restaurant:
           <%= Venue.find_by({ :id => favorite.venue_id }).name %>
+          /
         </li>
       <% end %>
     </ul>

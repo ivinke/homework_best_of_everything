@@ -6,7 +6,20 @@
   <dt>Name</dt>
   <dd><%= @dish.name %></dd>
 
-  <dt>Cuisine ID</dt>
-  <dd><%= @dish.cuisine_id %></dd>
+  <dt>Cuisine</dt>
+  <dd><%= Cuisine.find_by({ :id => @dish.cuisine_id }).name %></dd>
 
+  <dt>Favorites</dt>
+  <dd>
+    <ul>
+      <% Favorite.where({ :dish_id => @dish.id }).each do |favorite| %>
+        <li>
+          User:
+          <%= User.find_by({ :id => favorite.user_id }).username %>
+          / Restaurant:
+          <%= Venue.find_by({ :id => favorite.venue_id }).name %>
+        </li>
+      <% end %>
+    </ul>
+  </dd>
 </dl>
